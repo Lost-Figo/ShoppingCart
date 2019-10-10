@@ -33,6 +33,14 @@ public class UserController extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }else if(uri.indexOf("checkCatpcha") >= 0){
+            String code = req.getParameter("code");
+            if(code.equals(req.getSession().getAttribute("code"))){
+                pw.write("验证码验证成功！");
+            }else{
+                pw.write("验证失败！");
+            }
+
         }
     }
 }
